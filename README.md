@@ -1,3 +1,5 @@
+## THE GETIR API
+
 **This is a Node.js REST API exposing one post route for data collection**
 
 This REST API exposes one route for collecting data stored in a nosql database
@@ -16,7 +18,7 @@ or
 yarn add
 ```
 
-### Start the API 
+## Start the API 
 
 In development environment
 
