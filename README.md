@@ -2,8 +2,7 @@
 
 This REST API exposes one route for collecting data stored in a nosql database
 
-## Quick Start
-
+## Clone the repository and install dependencies
 
 ```bash
 git clone git@github.com:yankazela/Getir-Api.git
@@ -15,15 +14,24 @@ npm install
 or
 
 yarn add
+```
 
-### `start in development mode`
+### Start the API 
+
+In development environment
+
+```bash
 npm start
 
 or
 
 yarn start
 
-### `start in production mode`
+```
+
+In production environment
+
+```bash
 npm run start:prod
 
 or
