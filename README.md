@@ -44,7 +44,6 @@ yarn start:prod
 You will need to install a mongodb instance on your local environment to run the test cases
 
 ```bash
-### `To run test cases
 
 npm test
 
