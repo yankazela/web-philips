@@ -7,9 +7,9 @@ This REST API exposes one route for collecting data stored in a nosql database
 ## Clone the repository and install dependencies
 
 ```bash
-git clone git@github.com:yankazela/Getir-Api.git
+git clone git@github.com:yankazela/web-philips.git
 
-cd philips-api
+cd web-philips
 
 npm install
 
