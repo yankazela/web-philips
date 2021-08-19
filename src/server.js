@@ -7,7 +7,7 @@ server
     .use(express.json())
     .use(express.urlencoded({ extended: false }))
     .set('port', process.env.PORT || 8080)
-    // .use(verifyHeaders)
+    .use(processRequests.verifyHeaders)
     .get('/api/get-products', async (req, res) => processRequests.collectProducts(req, res))
     .get('/api/get-product/:id', async (req, res) => processRequests.collectProduct(req, res))
     .post('/api/add-product', async (req, res) => processRequests.createProduct(req, res))
