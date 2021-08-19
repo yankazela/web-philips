@@ -1,6 +1,6 @@
 ## THE GETIR API
 
-**This is a Node.js REST API exposing one post route for data collection**
+**This is a Node.js REST API exposing four routes for data storage and collection**
 
 This REST API exposes one route for collecting data stored in a nosql database
 
@@ -9,7 +9,7 @@ This REST API exposes one route for collecting data stored in a nosql database
 ```bash
 git clone git@github.com:yankazela/Getir-Api.git
 
-cd getir-api
+cd philips-api
 
 npm install
 
@@ -57,9 +57,12 @@ yarn test
 
 ## API access
 
-This API has only one POST access point:
+This API has four access points:
 
-### `/api/get-records`
+### `/api/get-products`
+### `/api/get-product/{id}`
+### `/api/add-product`
+### `/api/delete-product/{id}`
 
 It runs on
 
@@ -69,16 +72,6 @@ You must include the headers in the POST request
 
 ### `x-access-element` and `x-authorization-element`
 
-A post request must comme in the following form:
 
-```js
-{
-    "startDate": "xxxx-xx-xxx",
-    "endDate": "xxxx-xx-xxx",
-    "minCount": 1234,
-    "maxCount": 6789
-}
-
-```
 
 

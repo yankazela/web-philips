@@ -1,64 +1,45 @@
 
-const app =  require('../src/server')
-const mockData = require('./mockData')
-const mongoose = require('mongoose')
-const Records = require('../src/model/record')
-const supertest  = require('supertest')
+const app = require('../src/server')
+const supertest = require('supertest')
 
-const mongoUrl = "mongodb://localhost:27017/JestDB"
+const data = {
+    "quantity": 45,
+    "id": "test-yanncik-2",
+    "price": 123,
+    "name": "123"
+}
 
-beforeAll((done) => {
-    mongoose.connect(mongoUrl,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-            Records.insertMany(mockData)
-            done()
-    })
-})
+test("POST success /api/get-product", () => {
 
-afterAll((done) => {
-    mongoose.connect(mongoUrl,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        () => {
-            mongoose.connection.db.dropDatabase(() => {
-            mongoose.connection.close(() => done())
-            })
-        })
-})
-
-test("POST success /api/get-records", () => {
-    const data = { 
-        startDate: "2000-01-01",
-        endDate: "2021-12-30",
-        minCount: 0,
-        maxCount: 100
-    }
-
-    supertest(app).post("/api/get-records")
+    supertest(app).post("/api/add-product")
         .send(data)
         .expect(200)
         .then((response) => {
             // Check the response
-            expect(response.body.code).toBe(0);
-            expect(response.body.msg).toBe('Success');
-            expect(response.body.records[0].key).toBe('hQAKOlkHL')
+            expect(typeof response.body).toBe('object');
+            expect(response.body.quantity).toBe(data.quantity);
         })
 })
 
-test("POST failed /api/get-records", () => {
-    const data = { 
-        startDate: "2000-01-01",
-        endDate: "2021-12-30",
-    }
+test("GET product /api/get-product/{id}", () => {
 
-    supertest(app).post("/api/get-records")
+    supertest(app).get("/api/get-product/test-yanncik-2")
         .send(data)
-        .expect(403)
+        .expect(200)
         .then((response) => {
             // Check the response
-            expect(response.body.code).toBe(1);
-            expect(response.body.msg).toBe('Failure');
-            expect(response.body.errors.length).toBe(3)
+            expect(response.body).toBe(data);
+        })
+})
+
+test("Delete product /api/delete-products", () => {
+
+    supertest(app).get("/api/delete-product/test-yanncik-2")
+        .send(data)
+        .expect(200)
+        .then((response) => {
+            // Check the response
+            expect(response.body).toBe("");
         })
 })
 
